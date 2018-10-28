@@ -13,14 +13,14 @@
   <!-- bring over navbar and autofill their existing information -->
   <!-- navbar to allow user to navigate the website -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="home.html">HackaTeam</a>
+      <a class="navbar-brand">HackaTeam</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
       </button>
       <div id="navbarNavDropdown" class="navbar-collapse collapse">
           <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                  <a class="nav-link" href="home.html">Home<span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="dashboard.html">Dasboard<span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" href="event.html">Hackathon Events</a>
@@ -34,7 +34,7 @@
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                       <a class="dropdown-item" href="user-profile.html">Edit</a>
-                      <a class="dropdown-item" href="login.html">Logout</a>
+                      <a class="dropdown-item" href="welcome.html">Logout</a>
                   </div>
           </ul>
       </div>
@@ -50,14 +50,14 @@
   <label for="inputLastName" class="sr-only">Last Name</label>
   <input type="text" id="inputLastName" class="form-control" placeholder="Last Name" required="" autofocus=""><br>
 
+  <label for="skills" class="sr-only">Your skills</label>
+  <input type="text" id="skills" class="form-control" placeholder="append skills data here" readonly autofocus=""><br>
+
   <label for="inputURL" class="sr-only">https://URL:</label>
   <input type="url" id="inputURL" class="form-control" placeholder="Portfolio URL (optional)" pattern="https://.*" size="20" autofocus=""><br>
 
   <label for="inputEmail" class="sr-only">Email address</label>
-  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus=""><br>
-
-  <label for="inputUsername" class="sr-only">Username</label>
-  <input type="text" id="inputUsername" class="form-control" placeholder="Username" required="" autofocus=""><br>
+  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="" readonly><br>
 
   <button class="btn btn-lg btn-primary btn-block" type="submit" id="submit">Save</button>
 

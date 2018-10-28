@@ -5,71 +5,38 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <link rel="stylesheet" href="../styles/create-team-styles.css">
-  <title>Create a team</title>
+  <link rel="stylesheet" href="../styles/home-styles.css">
+  <title>Event</title>
 </head>
-
 <body>
   <!-- navbar to allow user to navigate the website -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand">HackaTeam</a>
+    <a class="navbar-brand" href="../home.html">HackaTeam</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div id="navbarNavDropdown" class="navbar-collapse collapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="dashboard.html">Dashboard</a>
+          <a class="nav-link" href="../home.html">Home</a>
         </li>
           <li class="nav-item active">
-          <a class="nav-link" href="event.html">Hackathon Events<span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="../event.html">Hackathon Events<span class="sr-only">(current)</span></a>
         </li>
 
       </ul>
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="user-profile.html" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="../user-profile.html" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             My Profile
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="user-profile.html">Edit</a>
-            <a class="dropdown-item" href="welcome.html">Logout</a>
+            <a class="dropdown-item" href="../user-profile.html">Edit</a>
+            <a class="dropdown-item" href="../login.html">Logout</a>
           </div>
       </ul>
     </div>
   </nav>
-
-  <!-- create a team form -->
-
-  <form action="event.html" class="create-team">
-  <h1>Event Name</h1>
-  <h2>Create a Team</h2><br>
-
-  <label for="inputTeamName" class="sr-only">Team Name</label>
-  <input type="text" id="inputTeamName" class="form-control" placeholder="Team Name" required="" autofocus=""><br>
-
-  <label for="skillsWanted">Skills Wanted:</label>
-  <input type="text" id="skillsWanted" class="form-control" placeholder="append skills data here" readonly autofocus=""><br>
-
-  <div class="form-group">
-    <label for="teamSize">Team Size</label>
-    <select class="form-control" id="team-size">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-      <option>6</option>
-    </select>
-  </div>
-
-  <div class="form-group">
-  <label for="idea">Idea:</label>
-  <textarea class="form-control" rows="5" id="team-idea"></textarea>
-</div>
-
-
-  <button class="btn btn-lg btn-primary btn-block" type="submit" id="submit">Create Team</button><br>
 
 
 
