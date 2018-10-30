@@ -42,18 +42,19 @@
   <!-- create a team form -->
 
   <form action="event.html" class="create-team">
-  <h1>Event Name</h1>
-  <h2>Create a Team</h2><br>
+  <h1>Event Name</h1><br>
+  <h2>Create a Team</h2>
 
   <label for="inputTeamName" class="sr-only">Team Name</label>
   <input type="text" id="inputTeamName" class="form-control" placeholder="Team Name" required="" autofocus=""><br>
 
-  <label for="skillsWanted">Skills Wanted:</label>
-  <input type="text" id="skillsWanted" class="form-control" placeholder="append skills data here" readonly autofocus=""><br>
+  <label for="skillsWanted" class="sr-only">Skills Wanted</label>
+  <input type="text" id="skillsWanted" class="form-control" placeholder="Skills Wanted" readonly autofocus=""><br>
 
   <div class="form-group">
-    <label for="teamSize">Team Size</label>
+    <label for="teamSize" class="sr-only">Team Size</label>
     <select class="form-control" id="team-size">
+      <option value="" disabled selected>Select Team Size</option>
       <option>1</option>
       <option>2</option>
       <option>3</option>
@@ -64,8 +65,8 @@
   </div>
 
   <div class="form-group">
-  <label for="idea">Idea:</label>
-  <textarea class="form-control" rows="5" id="team-idea"></textarea>
+  <label for="idea" class="sr-only">Ideas</label>
+  <textarea class="form-control" placeholder="Ideas that you have for the event." rows="5" id="team-idea"></textarea>
 </div>
 
 
