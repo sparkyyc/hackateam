@@ -3,7 +3,7 @@ let skillsToAdd = []
 
 document.addEventListener('DOMContentLoaded', () => {
     // get event id via local storage
-
+    let event_id = 1
     // get all skills
     getAllSkills()
     // regex to autofill search/drop down
@@ -19,16 +19,44 @@ document.addEventListener('DOMContentLoaded', () => {
         skillsToAdd.push(skillAdded)
         skillInput.value = '' 
     })
+    // checkbox functionality
+    let checkBox = document.getElementById('has-idea')
+        checkBox.addEventListener('click', () => {
+            if(checkBox.classList.contains('false')) {
+                checkBox.classList.add('true')
+                checkBox.classList.remove('false')
+            } else {
+                checkBox.classList.add('false')
+                checkBox.classList.remove('true')
+            }
+        })
     // on submit of form post team info 
     const postForm = document.getElementById('post-form')
     postForm.addEventListener('submit', (event) => {
         event.preventDefault()
         let formElements = event.target.elements
+        formElements[0].value = skillsToAdd
+        // create object to send from submit
+        checkBox = document.getElementById('has-idea')
+        let ideaBool 
+        if(checkBox.classList.contains('false')){
+            ideaBool = false
+        } else {
+            ideaBool = true
+        }
+        let teamInfo = {
+            "event_id": event_id,
+            "has_idea": ideaBool
+        }
+        
         for(let i = 0; i < formElements.length; i++){
             if(formElements[i].value){
-                
+                teamInfo[formElements[i].name] = formElements[i].value
+                console.log(formElements[i].value)
             }
-            
+            // "team_size_limit": req.body.team_size_limit,
+            // "has_idea": req.body.idea,
+            // "description": req.body.description
         }
     })
     // & for each skill value submited post for either association or add skill and association
@@ -44,9 +72,9 @@ let getAllSkills = () => {
     })
 }
 
-let postTeam = () => {
-    // create object to send from submit
-    axios.post(`${url}/teams`)
+let postTeam = (teamInfo) => {
+    
+    axios.post(`${url}/teams`, teamInfo)
     .then((response) => {
         console.log(response)
     })
