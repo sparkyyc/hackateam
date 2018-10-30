@@ -20,7 +20,7 @@
       <div id="navbarNavDropdown" class="navbar-collapse collapse">
           <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                  <a class="nav-link" href="dashboard.html">Dasboard<span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="dashboard.html">Dashboard<span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" href="event.html">Hackathon Events</a>
@@ -41,7 +41,7 @@
   </nav>
 
   <!-- allow user to edit profile form -->
-  <form action="user-profile.html" class="edit-profile">
+  <form action="user-profile.html" class="edit-profile" id="editProfileForm">
   <h1>My Profile</h1><br>
 
   <label for="inputFirstName" class="sr-only">First Name</label>
@@ -53,7 +53,7 @@
   <label for="skills" class="sr-only">Your skills</label>
   <input type="text" id="skills" class="form-control" placeholder="append skills data here" readonly autofocus=""><br>
 
-  <label for="inputURL" class="sr-only">https://URL:</label>
+  <label for="inputURL" class="sr-only">Portfolio URL (optional)</label>
   <input type="url" id="inputURL" class="form-control" placeholder="Portfolio URL (optional)" pattern="https://.*" size="20" autofocus=""><br>
 
   <label for="inputEmail" class="sr-only">Email address</label>
