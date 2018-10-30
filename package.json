@@ -20,5 +20,7 @@
   "homepage": "https://github.com/sparkyyc/hackateam#readme",
   "devDependencies": {
     "lite-server": "^2.4.0"
+  },
+  "dependencies": {
   }
 }
