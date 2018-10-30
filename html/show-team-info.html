@@ -41,30 +41,45 @@
 
   <!-- create a team form -->
 
-  <form action="event.html" class="create-team">
-  <h1>Event Name</h1>
-  <h2>Your Team</h2><br>
+  <form action="event.html" class="show-team">
+  <h1>Event Name</h1><br>
 
-  <label for="inputTeamName" class="sr-only">Team Name</label>
-  <input type="text" id="inputTeamName" class="form-control" placeholder="Team Name" required="" autofocus="" readonly><br>
 
-  <label for="skillsWanted" class="sr-only">Skills Wanted</label>
-  <input type="text" id="skillsWanted" class="form-control" placeholder="append skills data here" readonly autofocus=""><br>
 
-  <div class="form-group">
-  <label for="idea" class="sr-only">Idea</label>
-  <textarea class="form-control" rows="5" id="team-idea" placeholder="append idea text here" readonly></textarea>
-</div>
+     <div class="container">
+       <div class="row">
+         <div class="col-md">
+           <h2>Your Team</h2><br>
 
-<label for="members" class="sr-only">Team Members</label>
-<div class="input-group">
-   <input type="text" class="form-control" placeholder="append member email here" readonly>
-   <span class="input-group-btn">
-     <button type="button" class="btn btn-danger">Delete</button>
-   </span>
-</div>
-<button type="button" class="btn btn-link">Show member info</button><br><br>
-<button type="button" class="btn btn-success">Add a member</button>
+           <label for="inputTeamName" class="sr-only">Team Name</label>
+           <input type="text" id="inputTeamName" class="form-control" placeholder="Team Name" required="" autofocus="" readonly><br>
+
+           <label for="skillsWanted" class="sr-only">Skills Wanted</label>
+           <input type="text" id="skillsWanted" class="form-control" placeholder="append skills data here" readonly autofocus=""><br>
+
+           <div class="form-group">
+           <label for="idea" class="sr-only">Idea</label>
+           <textarea class="form-control" rows="5" id="team-idea" placeholder="append idea text here" readonly></textarea>
+         </div>
+       </div>
+
+
+         <div class="col-md">
+           <h2>Team members</h2><br>
+           <label for="members" class="sr-only">Team Members</label>
+           <div class="input-group">
+              <input type="text" class="form-control" placeholder="append member email here" readonly>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-danger">Delete</button>
+              </span>
+           </div>
+           <button type="button" class="btn btn-link">Show member info</button><br><br>
+           <button type="button" class="btn btn-success">Add a member</button>
+       </div>
+     </div>
+     </div>
+
+
 
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
