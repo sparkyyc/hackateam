@@ -42,7 +42,7 @@ let createChip = (skillAdded, isExistingSkill, chipsDiv) => {
 
     // if existing skill, remove from database when you remove the chip
     if (isExistingSkill) {
-      axios.delete(`${url}/skills/${id}`, { user_id: id })
+      axios.delete(`${url}/skills/${id}`, { data: { user_id: id } })
         .catch(err => { console.log(err) })
     }
     // if newly added skill, remove from list of skills to add when you remove chip
