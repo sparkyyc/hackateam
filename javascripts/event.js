@@ -79,13 +79,8 @@ function createCard(infoObject) {
 
   //add event listener to button on click to be passed onto another function show dynamically added event
   cardButton.addEventListener('click', (event) => {
-    createEventOnClick()
+    localStorage.setItem('data-id', infoObject.id)
+    location.href = "create-team.html";
   })
-
-}
-
-function createEventOnClick() {
-//redirect to join a team form.
-location.href = "create-team.html";
 
 }
