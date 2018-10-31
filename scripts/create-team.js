@@ -1,12 +1,17 @@
 const url = 'http://localhost:3000'
 let skillsToAdd = []
+let allSkills
 
 document.addEventListener('DOMContentLoaded', () => {
+    // *****************TO DO************************************
     // get event id via local storage
-    let event_id = 1
+    // get user id via local storage
+    // regex to autofill search/drop down
+    // redirect to next page
+    let eventId = 1
+    let userId = 1
     // get all skills
     getAllSkills()
-    // regex to autofill search/drop down
     // add button functionality
     const addButton = document.getElementById('add-button')
     const chipsDiv = document.getElementById('chipsDiv')
@@ -17,19 +22,19 @@ document.addEventListener('DOMContentLoaded', () => {
         createChip(skillAdded, chipsDiv)
         // add value for submit
         skillsToAdd.push(skillAdded)
-        skillInput.value = '' 
+        skillInput.value = ''
     })
     // checkbox functionality
     let checkBox = document.getElementById('has-idea')
-        checkBox.addEventListener('click', () => {
-            if(checkBox.classList.contains('false')) {
-                checkBox.classList.add('true')
-                checkBox.classList.remove('false')
-            } else {
-                checkBox.classList.add('false')
-                checkBox.classList.remove('true')
-            }
-        })
+    checkBox.addEventListener('click', () => {
+        if (checkBox.classList.contains('false')) {
+            checkBox.classList.add('true')
+            checkBox.classList.remove('false')
+        } else {
+            checkBox.classList.add('false')
+            checkBox.classList.remove('true')
+        }
+    })
     // on submit of form post team info 
     const postForm = document.getElementById('post-form')
     postForm.addEventListener('submit', (event) => {
@@ -38,62 +43,82 @@ document.addEventListener('DOMContentLoaded', () => {
         formElements[0].value = skillsToAdd
         // create object to send from submit
         checkBox = document.getElementById('has-idea')
-        let ideaBool 
-        if(checkBox.classList.contains('false')){
+        let ideaBool
+        if (checkBox.classList.contains('false')) {
             ideaBool = false
         } else {
             ideaBool = true
         }
         let teamInfo = {
-            "event_id": event_id,
-            "has_idea": ideaBool
+            "event_id": eventId,
+            "has_idea": ideaBool,
+            "user_id": userId 
         }
-        
-        for(let i = 0; i < formElements.length; i++){
-            if(formElements[i].value){
+        for (let i = 0; i < formElements.length; i++) {
+            if (formElements[i].value) {
                 teamInfo[formElements[i].name] = formElements[i].value
-                console.log(formElements[i].value)
             }
-            // "team_size_limit": req.body.team_size_limit,
-            // "has_idea": req.body.idea,
-            // "description": req.body.description
         }
+        teamInfo.team_size_limit = parseInt(teamInfo.team_size_limit)
+        postTeam(teamInfo, allSkills)
     })
-    // & for each skill value submited post for either association or add skill and association
-    // add team user asscoiation
-
+    
 })
 
 // Get all skills function
 let getAllSkills = () => {
     axios.get(`${url}/skills`)
-    .then((response) => {
-        console.log(response.data)
-    })
+        .then((response) => {
+            allSkills = response.data
+        })
 }
 
-let postTeam = (teamInfo) => {
-    
+// create team axios call
+let postTeam = (teamInfo, allSkills) => {
     axios.post(`${url}/teams`, teamInfo)
-    .then((response) => {
-        console.log(response)
-    })
+        .then((response) => {
+            let teamId = response.data.id
+            // & for each skill value submited post for either association or add skill and association
+            let skills = teamInfo.skillsWanted.split(',')
+            skills.forEach((skill) => {
+                if(allSkills.some(s => s.type === skill)){
+                    let skillData = {
+                        team_id: teamId,
+                        type: skill
+                    }
+                    axios.post(`${url}/skills`, skillData)
+                    .then((res) => {
+                        console.log(res, response)
+                    })
+                    // pass in team_id and type
+                } else {
+                    let skillData = {
+                        team_id: teamId,
+                        type: skill
+                    }
+                    axios.post(`${url}/skills/new`, skillData)
+                    .then((res) => {
+                        console.log(res, response)
+                    })
+                }
+            })
+        })
 }
 
 let createChip = (skillAdded, chipsDiv) => {
     let chipDiv = document.createElement('div')
-        chipDiv.classList.add('chip')
-        chipDiv.innerText = skillAdded
-        chipDiv.setAttribute('id', skillAdded)
-        chipsDiv.appendChild(chipDiv)
-        let closeSpan = document.createElement('span')
-        closeSpan.classList.add('closebtn')
-        closeSpan.innerHTML = '&times;'
-        chipDiv.appendChild(closeSpan)
-        // add event listener to delete
-        closeSpan.addEventListener('click', (event) => {
-            let type = document.getElementById(skillAdded)
-            type.parentNode.removeChild(type)
-            skillsToAdd = skillsToAdd.filter((skill) => skill !== skillAdded)
-        })
+    chipDiv.classList.add('chip')
+    chipDiv.innerText = skillAdded
+    chipDiv.setAttribute('id', skillAdded)
+    chipsDiv.appendChild(chipDiv)
+    let closeSpan = document.createElement('span')
+    closeSpan.classList.add('closebtn')
+    closeSpan.innerHTML = '&times;'
+    chipDiv.appendChild(closeSpan)
+    // add event listener to delete
+    closeSpan.addEventListener('click', (event) => {
+        let type = document.getElementById(skillAdded)
+        type.parentNode.removeChild(type)
+        skillsToAdd = skillsToAdd.filter((skill) => skill !== skillAdded)
+    })
 }
