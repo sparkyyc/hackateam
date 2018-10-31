@@ -79,7 +79,7 @@ function createCard(infoObject) {
 
   //add event listener to button on click to be passed onto another function show dynamically added event
   cardButton.addEventListener('click', (event) => {
-    localStorage.setItem('data-id', infoObject.id)
+    localStorage.setItem('eventID', infoObject.id)
     location.href = "create-team.html";
   })
 

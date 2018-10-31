@@ -1,4 +1,4 @@
-const url = 'http://localhost:3000'
+const url = 'https://hackateam-cat.herokuapp.com/'
 
 // temporarily hardcoding a user id of 1
 const id = 1
@@ -19,7 +19,7 @@ function submitHandler(ev) {
   ev.preventDefault()
 
   axios.put(`${url}/users/${id}`, getFormData())
-    .then(() => { window.location.href = `http://localhost:3001/html/dashboard.html` })
+    .then(() => { window.location.href = `http://hackateam.surge.sh/html/dashboard.html` })
     .catch((err) => { console.log(err) })
 }
 
