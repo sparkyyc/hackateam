@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // *****************TO DO************************************
     // get event id via local storage
     // get user id via local storage
-    // regex to autofill search/drop down
     // redirect to next page
     let eventId = 1
     let userId = 1
@@ -52,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let teamInfo = {
             "event_id": eventId,
             "has_idea": ideaBool,
-            "user_id": userId 
+            "user_id": userId
         }
         for (let i = 0; i < formElements.length; i++) {
             if (formElements[i].value) {
@@ -62,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         teamInfo.team_size_limit = parseInt(teamInfo.team_size_limit)
         postTeam(teamInfo, allSkills)
     })
-    
+
 })
 
 // Get all skills function
@@ -70,6 +69,12 @@ let getAllSkills = () => {
     axios.get(`${url}/skills`)
         .then((response) => {
             allSkills = response.data
+            let skillsDatalist = document.getElementById('skills')
+            response.data.forEach(skill => {
+                let option = document.createElement('option')
+                option.setAttribute('value', skill.type)
+                skillsDatalist.appendChild(option)
+            })
         })
 }
 
@@ -81,15 +86,16 @@ let postTeam = (teamInfo, allSkills) => {
             // & for each skill value submited post for either association or add skill and association
             let skills = teamInfo.skillsWanted.split(',')
             skills.forEach((skill) => {
-                if(allSkills.some(s => s.type === skill)){
+                if (allSkills.some(s => s.type === skill)) {
                     let skillData = {
                         team_id: teamId,
                         type: skill
                     }
                     axios.post(`${url}/skills`, skillData)
-                    .then((res) => {
-                        console.log(res, response)
-                    })
+                        .then((res) => {
+                            console.log(res, response)
+                            // window.location.href = `http://localhost:3001/html/dashboard.html`
+                        })
                     // pass in team_id and type
                 } else {
                     let skillData = {
@@ -97,9 +103,10 @@ let postTeam = (teamInfo, allSkills) => {
                         type: skill
                     }
                     axios.post(`${url}/skills/new`, skillData)
-                    .then((res) => {
-                        console.log(res, response)
-                    })
+                        .then((res) => {
+                            console.log(res, response)
+                            // window.location.href = `http://localhost:3001/html/dashboard.html`
+                        })
                 }
             })
         })
