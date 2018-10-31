@@ -55,15 +55,11 @@
   <input type="text" id="inputLastName" class="form-control" placeholder="Last name" required="" autofocus=""><br>
 
   <label for="inputURL" class="sr-only">Portfolio URL (optional)</label>
-  <input type="url" id="inputURL" class="form-control" placeholder="Portfolio URL (optional)" pattern="https://.*" size="20" autofocus=""><br>
-
-<!--  <label for="skills" class="sr-only">Your skills</label>
-  <input type="text" id="skills" class="form-control" placeholder="append skills data here" readonly autofocus=""><br>
--->
+  <input type="url" id="inputURL" class="form-control" placeholder="Portfolio URL (optional)" pattern="https?:\/\/.*" size="20" autofocus=""><br>
 
   <div class="input-group">
         <label for="skills" class="sr-only">Skills</label>
-        <input type="text" list="skills" class="form-control" placeholder="Skills">
+        <input type="text" list="skills" class="form-control" placeholder="Add a skill">
         <datalist id="skills">
         </datalist>
         <div class="input-group-append">
