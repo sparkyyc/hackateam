@@ -5,32 +5,32 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 });
 
+//make the backend live and create global url to access api
+let url = 'http://localhost:3000'
+
 //grab elements from events and display them on the website
 function grabEventInfoAndDisplay() {
 
-  //make the backend live and create url to access api
-  let url = 'http://localhost:3000'
-
   //get request for event information
-  axios.get(`${url}/events/`)
+  axios.get(`${url}/events`)
     .then((response) => {
-        console.log(response)
-        let events = response.data
-        console.log(events);
-        // target the element tage to be appended to.
-        for (let i = 0; i < events.length; i++) {
-          createCard(events[i])
-        }
-      })
-      .catch((error) => {
-        // handle error
-        console.log(error);
-      })
-    }
+      console.log(response)
+      let events = response.data
+      console.log(events);
+      // target the element tage to be appended to.
+      for (let i = 0; i < events.length; i++) {
+        createCard(events[i])
+      }
+    })
+    .catch((error) => {
+      // handle error
+      console.log(error);
+    })
+}
 
 function createCard(infoObject) {
-  console.log('infoObject', infoObject)
-
+  console.log(infoObject);
+  //creat all elements to make a card dynamically
   let card = document.createElement('div')
   let cardImg = document.createElement('img')
   let cardBody = document.createElement('div')
@@ -40,8 +40,9 @@ function createCard(infoObject) {
   let cardDate = document.createElement('p')
   let cardLocation = document.createElement('p')
 
-
+  //grab the bootstrap styles with classlist
   //set the event to the newly created variable
+  // cardTitle.setAttribute('href')
   card.classList.add('card')
   cardImg.classList.add('card-img-top')
   cardImg.setAttribute('alt', 'Card Image Here')
@@ -50,16 +51,18 @@ function createCard(infoObject) {
   cardTitle.classList.add('card-title')
   cardTitle.innerText = infoObject.name
   cardText.classList.add('card-text')
+
+  cardButton.setAttribute('data-id', infoObject.id)
+
   let date = new Date(infoObject.date)
   // cardDate.innerText = `${date.getMonth()}/${date.getDay()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`
   // cardDate.innerText = date.getMonth()
   cardDate.innerText = infoObject.date
   cardLocation.innerText = infoObject.location
-  cardButton.innerText = "View Event"
+  cardButton.innerText = "Find Team"
   cardButton.classList.add('btn')
   cardButton.classList.add('btn-primary')
-
-  // appends
+  // append all data to the card contents
   cardText.appendChild(cardDate)
   cardText.appendChild(cardLocation)
   cardBody.appendChild(cardTitle)
@@ -68,11 +71,21 @@ function createCard(infoObject) {
   card.appendChild(cardImg)
   card.appendChild(cardBody)
 
-  //get the card to append properly in each column
+  //get the card to append properly in each row
   let row = document.getElementById('event-row')
-  let eventCol = document.getElementById('event-col')
-  let cardsContainer = document.getElementById('cards-container')
 
+  //append the card to thew row
   row.appendChild(card)
+
+  //add event listener to button on click to be passed onto another function show dynamically added event
+  cardButton.addEventListener('click', (event) => {
+    createEventOnClick()
+  })
+
+}
+
+function createEventOnClick() {
+//redirect to join a team form.
+location.href = "create-team.html";
 
 }
