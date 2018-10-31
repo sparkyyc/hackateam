@@ -12,7 +12,6 @@ function getFormData() {
   formData.last_name = document.getElementById('inputLastName').value
   formData.skills = document.getElementById('skills').value
   formData.portfolio_url = document.getElementById('inputURL').value
-  formData.email = document.getElementById('inputEmail').value
 
   return formData
 }
@@ -25,7 +24,7 @@ function submitHandler(ev) {
     .catch((err) => { console.log(err) })
 }
 
-let createChip = (skillAdded, chipsDiv) => {
+let createChip = (skillAdded, isExistingSkill, chipsDiv) => {
   let chipDiv = document.createElement('div')
   chipDiv.classList.add('chip')
   chipDiv.innerText = skillAdded
@@ -40,8 +39,16 @@ let createChip = (skillAdded, chipsDiv) => {
   closeSpan.addEventListener('click', (event) => {
     let type = document.getElementById(skillAdded)
     type.parentNode.removeChild(type)
-    skillsToAdd = skillsToAdd.filter((skill) => skill !== skillAdded)
-    console.log(skillsToAdd)
+
+    // if existing skill, remove from database when you remove the chip
+    if (isExistingSkill) {
+      axios.delete(`${url}/skills/${id}`, { user_id: id })
+        .catch(err => { console.log(err) })
+    }
+    // if newly added skill, remove from list of skills to add when you remove chip
+    else {
+      skillsToAdd = skillsToAdd.filter((skill) => skill !== skillAdded)
+    }
   })
 }
 
@@ -63,12 +70,28 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .catch((err) => { console.log(err) })
 
+  // get all current skills for user and make chips for them
+  axios.get(`${url}/users/${id}/skills`)
+    .then(response => {
+      response.data.forEach(skill => { createChip(skill.type, true, chipsDiv) })
+    })
+
+  // get list of all possible skills and append to datalist
+  axios.get(`${url}/skills`)
+    .then(response => {
+      let skillsDatalist = document.getElementById('skills')
+      response.data.forEach(skill => {
+        let option = document.createElement('option')
+        option.setAttribute('value', skill.type)
+        skillsDatalist.appendChild(option)
+      })
+    })
+
   addButton.addEventListener('click', () => {
     let skillInput = document.querySelector(`[list='skills']`)
     let skillAdded = skillInput.value
 
-    // create chip
-    createChip(skillAdded, chipsDiv)
+    createChip(skillAdded, false, chipsDiv)
     // add value for submit
     skillsToAdd.push(skillAdded)
     skillInput.value = ''
