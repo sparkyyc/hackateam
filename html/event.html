@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <link rel="stylesheet" href="../styles/event-styles.css">
+  <link rel="stylesheet" href="/styles/event-styles.css">
   <title>Events</title>
 </head>
 
@@ -22,7 +22,7 @@
         <li class="nav-item">
           <a class="nav-link" href="dashboard.html">Dashboard</a>
         </li>
-          <li class="nav-item active">
+        <li class="nav-item active">
           <a class="nav-link" href="event.html">Hackathon Events<span class="sr-only">(current)</span></a>
         </li>
 
@@ -40,7 +40,7 @@
     </div>
   </nav>
 
- <!-- user can see all events going on -->
+  <!-- user can see all events going on -->
   <div class="jumbotron">
     <div class="container text-center">
       <h1>Hackathon events</h1>
@@ -48,36 +48,19 @@
     </div>
   </div>
 
-  <div class="container-fluid bg-3 text-center">
+  <div class="container bg-3 text-center" id="cards-container">
     <h3>Upcoming Events</h3><br>
-    <div class="row">
-
-      <div class="col-sm-3">
-        <p>Unearthed</p>
-        <a href="./events/event1.html"><img src="https://www.metsignited.org/Image?Action=View&Image_id=266" class="img-responsive" style="width:100%" alt="Image" /></a>
-      </div>
-
-      <div class="col-sm-3">
-        <p>Disrupt</p>
-        <a href="./events/event2.html"><img src="https://techcrunch.com/wp-content/uploads/2018/02/tc_disrupt_postgraphic_networking.jpg?w=730&crop=1" class="img-responsive" style="width:100%" alt="Image" /></a>
-      </div>
-
-      <div class="col-sm-3">
-        <p>AnalyticsX</p>
-        <a href="./events/event3.html"><img src="https://blogs.sas.com/content/sastraining/files/2018/08/Hackathon-image-1.jpg" class="img-responsive" style="width:100%" alt="Image" /></a>
-      </div>
-
-      <div class="col-sm-3">
-        <p>Reloaded</p>
-        <a href="./events/event4.html"><img src="https://www1.basf.com/hackathon/_assets/responsive/1200/keyvisual_coding_chemistry_BASF_Hackathon.jpg" class="img-responsive" style="width:100%" alt="Image" /></a>
-      </div>
+    <div class="row" id="event-row">
 
     </div>
-  </div><br>
+  </div>
+  </div>
 
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script src="/javascripts/event.js"></script>
 </body>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
 </html>
