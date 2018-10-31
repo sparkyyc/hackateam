@@ -27,8 +27,8 @@ function submitHandler(ev) {
 let createChip = (skillAdded, isExistingSkill, chipsDiv) => {
   let chipDiv = document.createElement('div')
   chipDiv.classList.add('chip')
-  chipDiv.innerText = skillAdded
-  chipDiv.setAttribute('id', skillAdded)
+  chipDiv.innerText = skillAdded.type
+  chipDiv.setAttribute('id', skillAdded.type)
   let closeSpan = document.createElement('span')
   closeSpan.classList.add('closebtn')
   closeSpan.innerHTML = '&times;'
@@ -37,17 +37,17 @@ let createChip = (skillAdded, isExistingSkill, chipsDiv) => {
 
   // add event listener to delete
   closeSpan.addEventListener('click', (event) => {
-    let type = document.getElementById(skillAdded)
+    let type = document.getElementById(skillAdded.type)
     type.parentNode.removeChild(type)
 
     // if existing skill, remove from database when you remove the chip
     if (isExistingSkill) {
-      axios.delete(`${url}/skills/${id}`, { data: { user_id: id } })
+      axios.delete(`${url}/skills/${skillAdded.id}`, { data: { user_id: id } })
         .catch(err => { console.log(err) })
     }
     // if newly added skill, remove from list of skills to add when you remove chip
     else {
-      skillsToAdd = skillsToAdd.filter((skill) => skill !== skillAdded)
+      skillsToAdd = skillsToAdd.filter((skill) => skill !== skillAdded.type)
     }
   })
 }
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // get all current skills for user and make chips for them
   axios.get(`${url}/users/${id}/skills`)
     .then(response => {
-      response.data.forEach(skill => { createChip(skill.type, true, chipsDiv) })
+      response.data.forEach(skill => { createChip(skill, true, chipsDiv) })
     })
 
   // get list of all possible skills and append to datalist
@@ -89,11 +89,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   addButton.addEventListener('click', () => {
     let skillInput = document.querySelector(`[list='skills']`)
-    let skillAdded = skillInput.value
+    let skillAdded = {}
+    skillAdded.type = skillInput.value
 
     createChip(skillAdded, false, chipsDiv)
     // add value for submit
-    skillsToAdd.push(skillAdded)
+    skillsToAdd.push(skillAdded.type)
     skillInput.value = ''
   })
 
